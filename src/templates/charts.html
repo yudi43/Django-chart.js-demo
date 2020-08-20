@@ -2,6 +2,50 @@
 
 <script>
 {% block jquery %}
+{% comment %} this is the endpoint for the api {% endcomment %}
+var endpoint = '/api/data' 
+
+
+$.ajax({
+    method: 'GET', 
+    url: endpoint, 
+    success: function(data) {
+        console.log(data.customers)
+    },
+    error: function(error) {
+        console.log(error)
+    }
+})
+{% endblock %}
+</script>
+
+
+
+{% block content %}
+
+
+
+<div class='row'>
+    <div class='col-sm-12' url-endpoint='{% url "api-data" %}'>
+        <h1>Hello World</h1>
+        <div class='col-sm-6'>
+            <canvas id="myChart" width="400" height="400"></canvas>
+        </div>
+        <div class='col-sm-6'>
+            <canvas id="myChart2" width="400" height="400"></canvas>
+        </div>
+
+
+    </div>
+</div>
+
+{% endblock content %}
+
+
+
+{% comment %} 
+<script>
+{% block jquery %}
 var endpoint = '/api/chart/data/'
 var defaultData = []
 var labels = [];
@@ -101,22 +145,4 @@ function setChart(){
 
 
 {% endblock %}
-</script>
-
-{% block content %}
-
-<div class='row'>
-    <div class='col-sm-12' url-endpoint='{% url "api-data" %}'>
-        <h1>Hello World</h1>
-        <div class='col-sm-6'>
-            <canvas id="myChart" width="400" height="400"></canvas>
-        </div>
-        <div class='col-sm-6'>
-            <canvas id="myChart2" width="400" height="400"></canvas>
-        </div>
-
-
-    </div>
-</div>
-
-{% endblock content %}
+</script> {% endcomment %}
