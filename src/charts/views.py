@@ -35,7 +35,9 @@ from rest_framework.response import Response
 
 class HomeView(View):
     def get(self, request, *args, **kwargs):
-        return render(request, "charts.html", {})
+        return render(
+            request, "charts.html", {"customers": 10}
+        )  # first way of doing it
 
 
 def get_data(request, *args, **kwargs):
@@ -43,7 +45,7 @@ def get_data(request, *args, **kwargs):
         "sales": 100,
         "customers": 10,
     }
-    return JsonResponse(data)
+    return JsonResponse(data)  # second way of doing it
 
 
 class ChartData(APIView):
@@ -56,4 +58,4 @@ class ChartData(APIView):
             "sales": 100,
             "customers": 10,
         }
-        return Response(data)
+        return Response(data)  # third way of doing it
